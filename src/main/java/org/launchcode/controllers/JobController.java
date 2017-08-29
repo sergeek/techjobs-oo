@@ -34,7 +34,9 @@ public class JobController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
+
         model.addAttribute(new JobForm());
+
         return "new-job";
     }
 
@@ -56,10 +58,11 @@ public class JobController {
                 jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId()));
 
         jobData.add(newJob);
-        model.addAttribute("job", newJob);
+
+        int newJobId = newJob.getId();
 
 
-        return "job-detail";
+        return "redirect:?id=" + newJobId;
 
     }
 }
